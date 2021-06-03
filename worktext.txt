@@ -6,4 +6,4 @@
 6 проверяем git status
 7 связываем свой репозиторий с гитхаб:
 git remote add origin https://github.com/L-graf/ПАПКА.git
-8 командой git push --set-upstream origin master https://github.com/L-graf/ПАПКА.git создаём ветку Мастер, которая будет связана с нашей веткой Мастер
+8 командой git push --set-upstream origin master https://github.com/L-graf/ПАПКА.git создаём ветку Мастер, которая будет связана с нашей веткой Мастер фломастер
