@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <title>Flexbox</title>
 <style>
 .container {
@@ -23,11 +24,60 @@ height: 100px;
 background: pink;
 border: 1px solid black;
 flex: 1 1 auto;
+=======
+<title>Animations</title>
+<style>
+.container {
+border: 1px solid red;
+position: relative;
+text-align: center;
+margin: 50px;
+padding: 50px;
+min-height: 250px;
+}
+.zoo {
+width: 180px;
+height: 220px;
+position: absolute;
+animation: mouse 10s linear infinite alternate;
+}
+.sign {
+animation: sign 2s linear infinite;
+}
+@keyframes mouse {
+0% {
+left: 0;
+}
+50% {
+left: 50%;
+}
+100% {
+left: 100%;
+}
+}
+@keyframes sign {
+0% {
+transform: rotate(0deg);
+}
+25% {
+transform: rotate(90deg);
+}
+50% {
+transform: rotate(180deg);
+}
+75% {
+transform: rotate(270deg);
+}
+100% {
+transform: rotate(360deg);
+}
+>>>>>>> june04
 }
 </style>
 </head>
 <body>
 <div class="container">
+<<<<<<< HEAD
 <div class="inner">1</div>
 <div class="inner">2</div>
 <div class="inner">3</div>
@@ -37,3 +87,11 @@ flex: 1 1 auto;
 </div>
 </body>
 </html>
+=======
+<img class="zoo" src="mylogo.jpg" alt="pic 1">
+<img class="sign" src="strelka.jpg" alt="pic 2">
+</div>
+</body>
+</html>
+
+>>>>>>> june04
