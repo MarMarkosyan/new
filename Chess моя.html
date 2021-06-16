@@ -4,29 +4,80 @@
 	<meta charset="utf-8">
 	<title>Chess</title>
 	<style>
-	.box {
-	width: 30px;
-	height: 30px;
-	border: 1px solid black;
-	display: inline-block;
-	text-align: center;
-	line-height: 30px;
-	
-	
-	}
-	.black {
-	background-color: black;
-	color: white;
-	}
-	.box1 {
-	width: 30px;
-	height: 30px;
-	border: 1px solid transparent;
-	display: inline-block;
-	text-align: center;
-	line-height: 30px;
-	}
+		.box {
+			width: 50px;
+			height: 50px;
+			border: 1px solid black;
+			background: white;
+			display: inline-block;
+			text-align: center;
+			line-height: 50px;
+			position: relative;
+			font-size: 
+		}
+		.black {
+			background-color: black;
+		}
+		.box1 {
+			width: 50px;
+			height: 50px;
+			border: 1px solid transparent;
+			display: inline-block;
+			text-align: center;
+			line-height: 50px;
+		}
 	</style>
+	<script>
+let chessnames = ['king', 'queen', 'bishop', 'knight', 'rook', 'pawn'];
+let chesscolors = ['white', 'black'];
+let coords = [['a','b','c','d','e','f','g','h'], [1, 2, 3, 4, 5, 6, 7, 8]];
+        
+function kingspath(begin, end) {
+    let a = document.getElementById(begin);
+    let b = document.getElementById(end);
+    if (!check_cell(a, b)) {
+        alert('Так ходить нельзя!')
+        return;
+    }
+    b.className = a.className;
+    a.className = '';
+}
+function check_cell(a, b) {
+    let name = a.className;
+    if (!name) return false;
+    let namearr = name.split('_');
+    if (!check_color(namearr[0])) return false;
+    if (!check_path(namearr, a, b)) return false;
+    return true;
+}
+function check_path(namearr, a, b) {
+    if (namearr[1] == 'king') {
+        pathes = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+    }
+    let begin_id = a.id;
+    let end_id = b.id;
+    let begin_idx1 = coords[0].findIndex(item => item == begin_id[0]);
+    let begin_idx2 = coords[1].findIndex(item => item == begin_id[1]);
+    let end_idx1 = coords[0].findIndex(item => item == end_id[0]);
+    let end_idx2 = coords[1].findIndex(item => item == end_id[1]);
+    for (path of pathes) {
+        if ((path[0] == begin_idx1 - end_idx1) && (path[1] == begin_idx2 - end_idx2)) {
+            if (check_aim(namearr, a, b)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+}
+function check_aim(namearr, a, b) {
+    if (b.className) return false;
+    return true;
+}
+function check_color(color) {
+    return true;
+}
+        </script>
 </head>
 <body>
 	<div>
@@ -43,98 +94,98 @@
 	</div>
 	<div>
 		<div class="box1">8
-		</div><div class="box white">&#9820;
-		</div><div class="box black">&#9816;
-		</div><div class="box white">&#9821;
-		</div><div class="box black">&#9813;
-		</div><div class="box white">&#9818;
-		</div><div class="box black">&#9815;
-		</div><div class="box white">&#9822;
-		</div><div class="box black">&#9814;
+		</div><div id="A8" class="box black_rook">&#9820;
+		</div><div id="B8" style="background:black" class="box black_knight">&#9816;
+		</div><div id="C8" class="box black_bishop">&#9821;
+		</div><div id="D8" style="background:black" class="box black_queen">&#9813;
+		</div><div id="E8" class="box black_king">&#9818;
+		</div><div id="F8" style="background:black" class="box black_bishop">&#9815;
+		</div><div id="G8" class="box black_knight">&#9822;
+		</div><div id="H8" style="background:black" class="box black_rook">&#9814;
 		</div>
 	</div>
 	<div>
 		<div class="box1">7
-		</div><div class="box black">&#9823;
-		</div><div class="box white">&#9823;
-		</div><div class="box black">&#9823;
-		</div><div class="box white">&#9823;
-		</div><div class="box black">&#9823;
-		</div><div class="box white">&#9823;
-		</div><div class="box black">&#9823;
-		</div><div class="box white">&#9823;
+		</div><div id="A7" style="background:black" class="box black_pawns">&#9823;
+		</div><div id="B7" class="box black_pawns">&#9823;
+		</div><div id="C7" style="background:black" class="box black_pawns">&#9823;
+		</div><div id="D7" class="box black_pawns">&#9823;
+		</div><div id="E7" style="background:black" class="box black_pawns">&#9823;
+		</div><div id="F7" class="box black_pawns">&#9823;
+		</div><div id="G7" style="background:black" class="box black_pawns">&#9823;
+		</div><div id="H7" class="box black_pawns">&#9823;
 		</div>
 	</div>
 	<div>
 		<div class="box1">6
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
+		</div><div id="A6" class="box white">&nbsp;
+		</div><div id="B6" class="box black">&nbsp;
+		</div><div id="C6" class="box white">&nbsp;
+		</div><div id="D6" class="box black">&nbsp;
+		</div><div id="E6" class="box white">&nbsp;
+		</div><div id="F6" class="box black">&nbsp;
+		</div><div id="G6" class="box white">&nbsp;
+		</div><div id="H6" class="box black">&nbsp;
 		</div>
 	</div>
 	<div>
 		<div class="box1">5
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
+		</div><div id="A5" class="box black">&nbsp;
+		</div><div id="B5" class="box white">&nbsp;
+		</div><div id="C5" class="box black">&nbsp;
+		</div><div id="D5" class="box white">&nbsp;
+		</div><div id="E5" class="box black">&nbsp;
+		</div><div id="F5" class="box white">&nbsp;
+		</div><div id="G5" class="box black">&nbsp;
+		</div><div id="H5" class="box white">&nbsp;
 		</div>
 	</div>
 	<div>
 		<div class="box1">4
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
+		</div><div id="A4" class="box white">&nbsp;
+		</div><div id="B4" class="box black">&nbsp;
+		</div><div id="C4" class="box white">&nbsp;
+		</div><div id="D4" class="box black">&nbsp;
+		</div><div id="E4" class="box white">&nbsp;
+		</div><div id="F4" class="box black">&nbsp;
+		</div><div id="G4" class="box white">&nbsp;
+		</div><div id="H4" class="box black">&nbsp;
 		</div>
 	</div>
 	<div>
 		<div class="box1">3
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
-		</div><div class="box black">&nbsp;
-		</div><div class="box white">&nbsp;
+		</div><div id="A3" class="box black">&nbsp;
+		</div><div id="B3" class="box white">&nbsp;
+		</div><div id="C3" class="box black">&nbsp;
+		</div><div id="D3" class="box white">&nbsp;
+		</div><div id="E3" class="box black">&nbsp;
+		</div><div id="F3" class="box white">&nbsp;
+		</div><div id="G3" class="box black">&nbsp;
+		</div><div id="H3" class="box white">&nbsp;
 		</div>
 	</div>
 	<div>
 		<div class="box1">2
-		</div><div class="box white">&#9817;
-		</div><div class="box black">&#9817;
-		</div><div class="box white">&#9817;
-		</div><div class="box black">&#9817;
-		</div><div class="box white">&#9817;
-		</div><div class="box black">&#9817;
-		</div><div class="box white">&#9817;
-		</div><div class="box black">&#9817;
+		</div><div id="A2" class="box white_pawns">&#9817;
+		</div><div id="B2" style="background:black" class="box white_pawns">&#9817;
+		</div><div id="C2" class="box white_pawns">&#9817;
+		</div><div id="D2" style="background:black" class="box white_pawns">&#9817;
+		</div><div id="E2" class="box white_pawns">&#9817;
+		</div><div id="F2" style="background:black" class="box white_pawns">&#9817;
+		</div><div id="G2" class="box white_pawns">&#9817;
+		</div><div id="H2" style="background:black" class="box white_pawns">&#9817;
 		</div>
 	</div>
 	<div>
 		<div class="box1">1
-		</div><div class="box black">&#9814;
-		</div><div class="box white">&#9816;
-		</div><div class="box black">&#9815;
-		</div><div class="box white">&#9813;
-		</div><div class="box black">&#9812;
-		</div><div class="box white">&#9815;
-		</div><div class="box black">&#9816;
-		</div><div class="box white">&#9814;
+		</div><div id="A1" style="background:black" class="box white_rook">&#9814;
+		</div><div id="B1" class="box white_knight">&#9816;
+		</div><div id="C1" style="background:black" class="box white_bishop">&#9815;
+		</div><div id="D1" class="box white_queen">&#9813;
+		</div><div id="E1" style="background:black" class="box white_king">&#9812;
+		</div><div id="F1" class="box white_bishop">&#9815;
+		</div><div id="G1" style="background:black" class="box white_knight">&#9816;
+		</div><div id="H1" class="box white_rook">&#9814;
 		</div>
 	</div>
 
