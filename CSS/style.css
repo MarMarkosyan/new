@@ -42,6 +42,14 @@
                 content: '\265a';
                 color: black;
             }
+			.white_knight:after {
+			content: '\2658';
+			color: white;
+			}
+			.black_knight:after {
+			content: '\265e';
+			color: black;
+			}
             body.mouseup td.startpoint {
                 border-color: yellow;
             }
